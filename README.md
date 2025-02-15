@@ -16,7 +16,7 @@ at this point the server should be running in a container listening to local por
 
 pull the project from github:
 
-> https://github.com/geco333/longevity_assignment.git
+> git pull https://github.com/geco333/longevity_assignment.git
 
 create a python virtual environment:
 
