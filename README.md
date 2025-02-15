@@ -57,7 +57,7 @@ when running as a docker container the database is volatile and all data will be
   }
   ```
 
-### ***/users/<user_id>***
+### ***/users/{user_id}***
 
 - **GET**: returns all data relating to the `user_id` provided.
 
@@ -74,7 +74,7 @@ when running as a docker container the database is volatile and all data will be
 
 - **DELETE**: removes an existing user.
 
-### ***/users/<user_id>/<activity>***
+### ***/users/{user_id}/{activity}***
 
 - **GET**: returns all `activity` data relating to the `user_id` provided.
   possible `activity` values:
@@ -105,7 +105,7 @@ when running as a docker container the database is volatile and all data will be
 
 - **DELETE**: removes an `activity` for the provided `user_id`.
 
-### ***/users/<user_id>/blood***
+### ***/users/{user_id}/blood***
 
 - **GET**: returns all blood test data relating to the `user_id` provided.
 
@@ -121,7 +121,7 @@ when running as a docker container the database is volatile and all data will be
   }
   ```
 
-### ***/users/<user_id>/get_health_score***
+### ***/users/{user_id}/get_health_score***
 
 - **GET**: calculates and returns the health score for the provided `user_id`.
   health score is the combined average of all physical activity parameters out of
@@ -129,13 +129,13 @@ when running as a docker container the database is volatile and all data will be
 
 > ({users exercising_hours} / {total exercising_hours}) + ({user steps} / {total steps}) + ({user km} + {total km})
 
-### ***/<activity>***
+### ***/{activity}***
 
 - **GET**: returns a list of all entries of the given `activity` in the database. possible `activity` values:
     - *physical*
     - *sleep*
 
-### ***/<activity>/<activity_id>***
+### ***/{activity}/{activity_id}***
 
 - **GET**: returns all information of the given `activity` relating to the given `activity_id`.
 
@@ -156,7 +156,7 @@ when running as a docker container the database is volatile and all data will be
 
 - **GET**: returns a list of all blood test entries in the database.
 
-### ***/blood/<blood_test_id>***
+### ***/blood/{blood_test_id}***
 
 - **GET**: returns all blood test information for to the given `blood_test_id`.
 
