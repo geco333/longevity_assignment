@@ -10,7 +10,7 @@ run the server mapped to port 5000:
 
 > docker run -p 5000:5000 health_check
 
-at this point the server should be running in a container listening to port 5000
+at this point the server should be running in a container listening to local port 5000
 
 ## Locally
 
