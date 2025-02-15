@@ -1,5 +1,3 @@
-from typing import Optional
-
 from marshmallow.fields import Int
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from sqlalchemy import ForeignKey
@@ -12,20 +10,26 @@ class Activity:
     pass
 
 
-class SleepActivity(db.Model):
+class BloodTest(db.Model):
     """Contains a users' physical activity information."""
 
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    total_hours: Mapped[Optional[int]] = mapped_column(default=0)
-    wake_ups: Mapped[Optional[int]] = mapped_column(default=0)
+    cbc: Mapped[int] = mapped_column(default=0)
+    wbc: Mapped[int] = mapped_column(default=0)
+    rbc: Mapped[int] = mapped_column(default=0)
+    hct: Mapped[int] = mapped_column(default=0)
+    hgt: Mapped[int] = mapped_column(default=0)
 
 
-class SleepActivitySchema(SQLAlchemyAutoSchema):
+class BloodTestSchema(SQLAlchemyAutoSchema):
     """Validation schema for the `SleepActivity` object."""
 
     class Meta:
-        model = SleepActivity
+        model = BloodTest
         exclude = ["id"]
 
-    total_hours = Int()
-    wake_ups = Int()
+    cbc = Int()
+    wbc = Int()
+    rbc = Int()
+    hct = Int()
+    hgt = Int()

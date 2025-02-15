@@ -1,45 +1,17 @@
-import unittest
+from flask import Flask
 
-from appium import webdriver
-from appium.options.android import UiAutomator2Options
-from appium.webdriver.common.appiumby import AppiumBy
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 
-capabilities = dict(
-    platformName='Android',
-    automationName='uiautomator2',
-    deviceName='Android',
-    appPackage='com.android.settings',
-    appActivity='.Settings',
-    language='en',
-    locale='US'
-)
+from views.api import blueprint
 
-appium_server_url = 'http://localhost:4723'
+app.register_blueprint(blueprint)
 
+with app.app_context():
+    from db import db
 
-class TestAppium(unittest.TestCase):
-    def setUp(self) -> None:
-        self.driver = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capabilities(capabilities))
+    db.init_app(app)
+    db.create_all()
 
-        self.driver.implicitly_wait(5)
-
-    def tearDown(self) -> None:
-        if self.driver:
-            self.driver.quit()
-
-    def test_find_battery(self) -> None:
-        el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Battery"]')
-        el.click()
-
-        battery_text = self.driver.find_element(by=AppiumBy.XPATH,
-                                                value='//android.widget.TextView[@resource-id="com.android.settings:id/usage_summary"]')
-
-        assert battery_text.text == "100%"
-
-        show_battery_percentage_toggle = self.driver.find_element(by=AppiumBy.XPATH,
-                                                                  value='//android.widget.Switch[@resource-id="com.android.settings:id/switchWidget"]')
-        show_battery_percentage_toggle.click()
-
-
-if __name__ == '__main__':
-    unittest.main()
+if __name__ == "__main__":
+    app.run(debug=True)
