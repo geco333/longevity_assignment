@@ -8,5 +8,5 @@ files:
 
 hooks:
   ApplicationStart:
-    - location: flask run --host 0.0.0.0
+    - location: "docker run -p 8000:8000 health_score"
       timeout: 3600
