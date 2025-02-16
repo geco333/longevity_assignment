@@ -5,3 +5,8 @@ os: linux
 files:
   - source: /
     destination: /app
+
+hooks:
+  ApplicationStart:
+    - location: flask run --host 0.0.0.0
+      timeout: 3600
