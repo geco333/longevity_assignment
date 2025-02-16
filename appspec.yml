@@ -8,5 +8,5 @@ files:
 
 hooks:
   ApplicationStart:
-    - location: "docker run -p 8000:8000 health_score"
+    - location: run.sh
       timeout: 3600
