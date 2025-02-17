@@ -1,0 +1,16 @@
+version: 0.0
+
+os: linux
+
+files:
+  - source: /
+    destination: /app
+
+permissions:
+  - object: /app/run.sh
+    mode: 774
+
+hooks:
+  ApplicationStart:
+    - location: run.sh
+      timeout: 3600
