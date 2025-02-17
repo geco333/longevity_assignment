@@ -2,7 +2,7 @@
 
 ## In a container
 
-load the image tar to the local repository:
+download and load the image tar to the local repository:
 
 > docker load -i health_score.tar
 
